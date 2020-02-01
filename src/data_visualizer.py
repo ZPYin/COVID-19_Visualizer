@@ -1,7 +1,7 @@
 from pyecharts.render import make_snapshot
 from snapshot_phantomjs import snapshot
 
-from pyecharts.charts import Map, Geo
+from pyecharts.charts import Map
 from pyecharts import options as opts
 
 import matplotlib.pyplot as plt
@@ -13,12 +13,46 @@ import sqlite3 as db
 
 import os
 import sys
+import csv
+import re
 
 # add search path of phantomjs
 sys.path.append('/Users/yinzhenping/Downloads/phantomjs-2.1.1-macosx/bin')
 projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 dbFile = os.path.join(projectDir, 'db', '2019_nCov_data.db')
+
+
+def searchCityLongName(cityName):
+    """
+    search the city long name.
+
+    Parameters
+    ----------
+    cityName: str
+        city name. e.g., 鄂州
+
+    examples
+    --------
+    > searchCityLongName('鄂州')
+    > '鄂州市'
+    """
+
+    baidumap_City_table_file = os.path.join(
+        projectDir, 'include', 'BaiduMap_cityCode_1102.txt')
+
+    # load baidu map city table
+    city_longname_list = []
+    with open(baidumap_City_table_file, 'r', encoding='utf-8') as fh:
+        tableReader = csv.reader(fh)
+        for row in tableReader:
+            city_longname_list.append(row[1])
+
+    for city_longname in city_longname_list:
+        if re.search('.*{0}.*'.format(cityName), city_longname):
+            return city_longname
+
+    return None
 
 
 def display_recent_overall(pic_file):
@@ -119,14 +153,15 @@ def display_recent_provincial_distribution(province, pic_file):
     hubeiProvinceShortName = cu.fetchone()
     hubeiProvinceShortName = hubeiProvinceShortName[0]
 
-    list2 = [[hubeiProvinceData[i][0], hubeiProvinceData[i][1]]
+    list2 = [[searchCityLongName(hubeiProvinceData[i][0]),
+              hubeiProvinceData[i][1]]
              for i in range(len(hubeiProvinceData))]
     map_2 = Map()
     map_2.set_global_opts(
         title_opts=opts.TitleOpts(title="{0} {1}感染人数".
                                   format(recentTimeObj.strftime('%y-%m-%d'),
                                          province)),
-        visualmap_opts=opts.VisualMapOpts(max_=100)
+        visualmap_opts=opts.VisualMapOpts(max_=500)
         )
     map_2.add("{0} {1}感染人数".format(
                 recentTimeObj.strftime('%y-%m-%d'),
