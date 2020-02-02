@@ -38,21 +38,38 @@ def searchCityLongName(cityName):
     > '鄂州市'
     """
 
-    baidumap_City_table_file = os.path.join(
-        projectDir, 'include', 'BaiduMap_cityCode_1102.txt')
+    cityLongName = None
 
-    # load baidu map city table
-    city_longname_list = []
-    with open(baidumap_City_table_file, 'r', encoding='utf-8') as fh:
+    # search in the additional city name table
+    correction_table_file = os.path.join(
+        projectDir, 'include', 'cityName_correction_table.txt')
+    cityName_correction_dict = dict()
+    with open(correction_table_file, 'r', encoding='utf-8') as fh:
         tableReader = csv.reader(fh)
+        tableReader.__next__()
         for row in tableReader:
-            city_longname_list.append(row[1])
+            cityName_correction_dict[row[0]] = row[1]
 
-    for city_longname in city_longname_list:
-        if re.search('.*{0}.*'.format(cityName), city_longname):
-            return city_longname
+    for city_longname in cityName_correction_dict.keys():
+        if re.search('{0}'.format(cityName), city_longname):
+            cityLongName = cityName_correction_dict[city_longname]
 
-    return None
+    if not cityLongName:
+        # search in baidu map city table
+        baidumap_City_table_file = os.path.join(
+            projectDir, 'include', 'BaiduMap_cityCode_1102.txt')
+        city_longname_list = []
+        with open(baidumap_City_table_file, 'r', encoding='utf-8') as fh:
+            tableReader = csv.reader(fh)
+            tableReader.__next__()
+            for row in tableReader:
+                city_longname_list.append(row[1])
+
+        for city_longname in city_longname_list:
+            if re.search('.*{0}.*'.format(cityName), city_longname):
+                cityLongName = city_longname
+
+    return cityLongName
 
 
 def display_recent_overall(pic_file):
