@@ -19,6 +19,15 @@ conda install python=3.6
 pip install -r requirements.txt
 ```
 
+## Results
+
+<p align='center'>
+<img src='../img/overall_distribution.png', width=550, height=300, lat='overall_distribution'>
+<br>
+<b>Regional distribution of 2019-nCov patients in China</b>
+
+Detailed results can be found in [2019-nCov-stats.md](docs/2019-coronavirus-stats.md)
+
 ## Contact
 
 Zhenping Yin <zp.yin@whu.edu.cn>
