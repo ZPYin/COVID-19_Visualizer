@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ## Results
 
 <p align='center'>
-<img src='../img/overall_distribution.png', width=550, height=300, lat='overall_distribution'>
+<img src='img/overall_distribution.png', width=550, height=300, lat='overall_distribution'>
 <br>
 <b>Regional distribution of 2019-nCov patients in China</b>
 
