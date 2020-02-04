@@ -326,3 +326,318 @@
 2020-02-04 16:38:56,100 - logger - db_create_regionname_table - 145 - Create the Region_Name table successfully.
 2020-02-04 16:38:56,101 - logger - download_all_regionNames - 72 - Finish successfully!
 2020-02-04 16:38:56,102 - logger - download_overall_data - 23 - Start to download the overall data.
+2020-02-04 16:39:31,274 - logger - db_connect - 19 - 2.6.0
+2020-02-04 16:39:31,274 - logger - db_connect - 22 - Successfully connect to the database:
+/root/2019-nCov_Visualizer/db/2019_nCov_data.db
+2020-02-04 16:39:31,805 - logger - download_all_regionNames - 57 - Start to download the region names.
+2020-02-04 16:39:32,094 - logger - download_all_regionNames - 62 -    59 region names were retrieved.
+2020-02-04 16:39:32,095 - logger - download_all_regionNames - 65 - Start to save the region names to the database.
+2020-02-04 16:39:32,096 - logger - db_create_regionname_table - 145 - Create the Region_Name table successfully.
+2020-02-04 16:39:32,098 - logger - download_all_regionNames - 72 - Finish successfully!
+2020-02-04 16:39:32,098 - logger - download_overall_data - 23 - Start to download the overall data.
+2020-02-04 16:39:39,209 - logger - download_overall_data - 30 -   392 OVERALL records were retrieved.
+2020-02-04 16:39:39,210 - logger - download_overall_data - 34 - Start to save the overall data to the database.
+2020-02-04 16:39:39,210 - logger - db_create_overall_table - 53 - Create the Overall table successfully.
+2020-02-04 16:39:39,220 - logger - download_overall_data - 46 - Finish successfully!
+2020-02-04 16:39:39,221 - logger - download_regional_data - 113 - Start to download the region data for 上海市.
+2020-02-04 16:39:41,238 - logger - download_regional_data - 128 -    68 REGIONAL records were retrieved.
+2020-02-04 16:39:41,238 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:41,238 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:41,258 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:41,259 - logger - download_regional_data - 113 - Start to download the region data for 云南省.
+2020-02-04 16:39:42,569 - logger - download_regional_data - 128 -    48 REGIONAL records were retrieved.
+2020-02-04 16:39:42,570 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:42,570 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:42,583 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:42,583 - logger - download_regional_data - 113 - Start to download the region data for 俄罗斯.
+2020-02-04 16:39:42,867 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:39:42,868 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:42,868 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:42,868 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:42,868 - logger - download_regional_data - 113 - Start to download the region data for 内蒙古自治区.
+2020-02-04 16:39:43,801 - logger - download_regional_data - 128 -    36 REGIONAL records were retrieved.
+2020-02-04 16:39:43,801 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:43,802 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:43,811 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:43,811 - logger - download_regional_data - 113 - Start to download the region data for 加拿大.
+2020-02-04 16:39:44,101 - logger - download_regional_data - 128 -     5 REGIONAL records were retrieved.
+2020-02-04 16:39:44,101 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:44,101 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:44,102 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:44,102 - logger - download_regional_data - 113 - Start to download the region data for 北京市.
+2020-02-04 16:39:46,595 - logger - download_regional_data - 128 -    89 REGIONAL records were retrieved.
+2020-02-04 16:39:46,595 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:46,596 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:46,624 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:46,624 - logger - download_regional_data - 113 - Start to download the region data for 印度.
+2020-02-04 16:39:46,904 - logger - download_regional_data - 128 -     5 REGIONAL records were retrieved.
+2020-02-04 16:39:46,905 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:46,905 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:46,905 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:46,905 - logger - download_regional_data - 113 - Start to download the region data for 台湾.
+2020-02-04 16:39:47,209 - logger - download_regional_data - 128 -    15 REGIONAL records were retrieved.
+2020-02-04 16:39:47,210 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:47,210 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:47,211 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:47,211 - logger - download_regional_data - 113 - Start to download the region data for 吉林省.
+2020-02-04 16:39:47,791 - logger - download_regional_data - 128 -    27 REGIONAL records were retrieved.
+2020-02-04 16:39:47,792 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:47,792 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:47,796 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:47,797 - logger - download_regional_data - 113 - Start to download the region data for 四川省.
+2020-02-04 16:39:49,273 - logger - download_regional_data - 128 -    45 REGIONAL records were retrieved.
+2020-02-04 16:39:49,273 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:49,274 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:49,290 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:49,290 - logger - download_regional_data - 113 - Start to download the region data for 天津市.
+2020-02-04 16:39:50,846 - logger - download_regional_data - 128 -    64 REGIONAL records were retrieved.
+2020-02-04 16:39:50,847 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:50,847 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:50,861 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:50,862 - logger - download_regional_data - 113 - Start to download the region data for 宁夏回族自治区.
+2020-02-04 16:39:51,348 - logger - download_regional_data - 128 -    26 REGIONAL records were retrieved.
+2020-02-04 16:39:51,349 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:51,349 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:51,352 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:51,352 - logger - download_regional_data - 113 - Start to download the region data for 安徽省.
+2020-02-04 16:39:52,903 - logger - download_regional_data - 128 -    51 REGIONAL records were retrieved.
+2020-02-04 16:39:52,904 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:52,904 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:52,921 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:52,921 - logger - download_regional_data - 113 - Start to download the region data for 尼泊尔.
+2020-02-04 16:39:53,205 - logger - download_regional_data - 128 -     4 REGIONAL records were retrieved.
+2020-02-04 16:39:53,205 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:53,205 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:53,205 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:53,206 - logger - download_regional_data - 113 - Start to download the region data for 山东省.
+2020-02-04 16:39:55,272 - logger - download_regional_data - 128 -    73 REGIONAL records were retrieved.
+2020-02-04 16:39:55,273 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:55,273 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:55,296 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:55,296 - logger - download_regional_data - 113 - Start to download the region data for 山西省.
+2020-02-04 16:39:56,121 - logger - download_regional_data - 128 -    31 REGIONAL records were retrieved.
+2020-02-04 16:39:56,121 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:56,121 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:56,133 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:56,133 - logger - download_regional_data - 113 - Start to download the region data for 广东省.
+2020-02-04 16:39:59,269 - logger - download_regional_data - 128 -    97 REGIONAL records were retrieved.
+2020-02-04 16:39:59,270 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:39:59,270 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:39:59,307 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:39:59,308 - logger - download_regional_data - 113 - Start to download the region data for 广西壮族自治区.
+2020-02-04 16:40:00,325 - logger - download_regional_data - 128 -    42 REGIONAL records were retrieved.
+2020-02-04 16:40:00,326 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:00,326 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:00,336 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:00,336 - logger - download_regional_data - 113 - Start to download the region data for 德国.
+2020-02-04 16:40:05,020 - logger - download_regional_data - 128 -    10 REGIONAL records were retrieved.
+2020-02-04 16:40:05,020 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:05,020 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:05,021 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:05,021 - logger - download_regional_data - 113 - Start to download the region data for 意大利.
+2020-02-04 16:40:08,042 - logger - download_regional_data - 128 -     4 REGIONAL records were retrieved.
+2020-02-04 16:40:08,043 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:08,043 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:08,043 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:08,043 - logger - download_regional_data - 113 - Start to download the region data for 斯里兰卡.
+2020-02-04 16:40:08,292 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:40:08,293 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:08,293 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:08,293 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:08,293 - logger - download_regional_data - 113 - Start to download the region data for 新加坡.
+2020-02-04 16:40:08,624 - logger - download_regional_data - 128 -    11 REGIONAL records were retrieved.
+2020-02-04 16:40:08,625 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:08,625 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:08,626 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:08,626 - logger - download_regional_data - 113 - Start to download the region data for 新疆维吾尔自治区.
+2020-02-04 16:40:09,159 - logger - download_regional_data - 128 -    22 REGIONAL records were retrieved.
+2020-02-04 16:40:09,160 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:09,160 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:09,163 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:09,163 - logger - download_regional_data - 113 - Start to download the region data for 日本.
+2020-02-04 16:40:09,450 - logger - download_regional_data - 128 -    11 REGIONAL records were retrieved.
+2020-02-04 16:40:09,451 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:09,451 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:09,452 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:09,452 - logger - download_regional_data - 113 - Start to download the region data for 柬埔寨.
+2020-02-04 16:40:09,719 - logger - download_regional_data - 128 -     4 REGIONAL records were retrieved.
+2020-02-04 16:40:09,719 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:09,720 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:09,720 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:09,720 - logger - download_regional_data - 113 - Start to download the region data for 江苏省.
+2020-02-04 16:40:10,894 - logger - download_regional_data - 128 -    42 REGIONAL records were retrieved.
+2020-02-04 16:40:10,894 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:10,894 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:10,905 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:10,905 - logger - download_regional_data - 113 - Start to download the region data for 江西省.
+2020-02-04 16:40:12,025 - logger - download_regional_data - 128 -    46 REGIONAL records were retrieved.
+2020-02-04 16:40:12,026 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:12,026 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:12,036 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:12,037 - logger - download_regional_data - 113 - Start to download the region data for 河北省.
+2020-02-04 16:40:12,733 - logger - download_regional_data - 128 -    26 REGIONAL records were retrieved.
+2020-02-04 16:40:12,734 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:12,734 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:12,738 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:12,738 - logger - download_regional_data - 113 - Start to download the region data for 河南省.
+2020-02-04 16:40:15,085 - logger - download_regional_data - 128 -    67 REGIONAL records were retrieved.
+2020-02-04 16:40:15,086 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:15,086 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:15,111 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:15,112 - logger - download_regional_data - 113 - Start to download the region data for 法国.
+2020-02-04 16:40:15,380 - logger - download_regional_data - 128 -     7 REGIONAL records were retrieved.
+2020-02-04 16:40:15,381 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:15,381 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:15,381 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:15,382 - logger - download_regional_data - 113 - Start to download the region data for 泰国.
+2020-02-04 16:40:15,661 - logger - download_regional_data - 128 -     8 REGIONAL records were retrieved.
+2020-02-04 16:40:15,661 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:15,661 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:15,662 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:15,662 - logger - download_regional_data - 113 - Start to download the region data for 浙江省.
+2020-02-04 16:40:17,066 - logger - download_regional_data - 128 -    56 REGIONAL records were retrieved.
+2020-02-04 16:40:17,067 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:17,067 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:17,081 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:17,082 - logger - download_regional_data - 113 - Start to download the region data for 海南省.
+2020-02-04 16:40:18,653 - logger - download_regional_data - 128 -    59 REGIONAL records were retrieved.
+2020-02-04 16:40:18,653 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:18,654 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:18,669 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:18,670 - logger - download_regional_data - 113 - Start to download the region data for 湖北省.
+2020-02-04 16:40:22,260 - logger - download_regional_data - 128 -   118 REGIONAL records were retrieved.
+2020-02-04 16:40:22,261 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:22,261 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:22,303 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:22,304 - logger - download_regional_data - 113 - Start to download the region data for 湖南省.
+2020-02-04 16:40:23,864 - logger - download_regional_data - 128 -    56 REGIONAL records were retrieved.
+2020-02-04 16:40:23,864 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:23,864 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:23,880 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:23,881 - logger - download_regional_data - 113 - Start to download the region data for 澳大利亚.
+2020-02-04 16:40:24,170 - logger - download_regional_data - 128 -    10 REGIONAL records were retrieved.
+2020-02-04 16:40:24,171 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:24,171 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:24,171 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:24,171 - logger - download_regional_data - 113 - Start to download the region data for 澳门.
+2020-02-04 16:40:24,495 - logger - download_regional_data - 128 -    13 REGIONAL records were retrieved.
+2020-02-04 16:40:24,495 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:24,495 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:24,496 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:24,496 - logger - download_regional_data - 113 - Start to download the region data for 甘肃省.
+2020-02-04 16:40:25,314 - logger - download_regional_data - 128 -    32 REGIONAL records were retrieved.
+2020-02-04 16:40:25,314 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:25,314 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:25,321 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:25,322 - logger - download_regional_data - 113 - Start to download the region data for 福建省.
+2020-02-04 16:40:26,263 - logger - download_regional_data - 128 -    43 REGIONAL records were retrieved.
+2020-02-04 16:40:26,263 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:26,263 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:26,272 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:26,272 - logger - download_regional_data - 113 - Start to download the region data for 美国.
+2020-02-04 16:40:26,559 - logger - download_regional_data - 128 -     8 REGIONAL records were retrieved.
+2020-02-04 16:40:26,560 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:26,560 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:26,561 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:26,561 - logger - download_regional_data - 113 - Start to download the region data for 芬兰.
+2020-02-04 16:40:26,840 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:40:26,840 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:26,840 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:26,841 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:26,841 - logger - download_regional_data - 113 - Start to download the region data for 英国.
+2020-02-04 16:40:27,118 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:40:27,118 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:27,118 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:27,119 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:27,119 - logger - download_regional_data - 113 - Start to download the region data for 蒙古.
+2020-02-04 16:40:27,364 - logger - download_regional_data - 128 -     0 REGIONAL records were retrieved.
+2020-02-04 16:40:27,365 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:27,365 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:27,365 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:27,365 - logger - download_regional_data - 113 - Start to download the region data for 西藏自治区.
+2020-02-04 16:40:27,650 - logger - download_regional_data - 128 -     7 REGIONAL records were retrieved.
+2020-02-04 16:40:27,650 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:27,650 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:27,651 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:27,651 - logger - download_regional_data - 113 - Start to download the region data for 贵州省.
+2020-02-04 16:40:28,281 - logger - download_regional_data - 128 -    26 REGIONAL records were retrieved.
+2020-02-04 16:40:28,282 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:28,282 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:28,286 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:28,286 - logger - download_regional_data - 113 - Start to download the region data for 越南.
+2020-02-04 16:40:28,568 - logger - download_regional_data - 128 -     7 REGIONAL records were retrieved.
+2020-02-04 16:40:28,569 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:28,569 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:28,569 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:28,569 - logger - download_regional_data - 113 - Start to download the region data for 辽宁省.
+2020-02-04 16:40:30,063 - logger - download_regional_data - 128 -    66 REGIONAL records were retrieved.
+2020-02-04 16:40:30,064 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:30,064 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:30,080 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:30,080 - logger - download_regional_data - 113 - Start to download the region data for 重庆市.
+2020-02-04 16:40:33,820 - logger - download_regional_data - 128 -    69 REGIONAL records were retrieved.
+2020-02-04 16:40:33,822 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:33,822 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:33,867 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:33,867 - logger - download_regional_data - 113 - Start to download the region data for 阿联酋.
+2020-02-04 16:40:49,051 - logger - download_regional_data - 122 - Failed in 1 try.
+2020-02-04 16:40:49,051 - logger - download_regional_data - 113 - Start to download the region data for 阿联酋.
+2020-02-04 16:40:54,988 - logger - download_regional_data - 128 -     5 REGIONAL records were retrieved.
+2020-02-04 16:40:54,988 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:54,988 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:54,989 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:54,989 - logger - download_regional_data - 113 - Start to download the region data for 陕西省.
+2020-02-04 16:40:55,827 - logger - download_regional_data - 128 -    34 REGIONAL records were retrieved.
+2020-02-04 16:40:55,828 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:55,828 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:55,837 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:55,837 - logger - download_regional_data - 113 - Start to download the region data for 青海省.
+2020-02-04 16:40:56,186 - logger - download_regional_data - 128 -    19 REGIONAL records were retrieved.
+2020-02-04 16:40:56,187 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:56,187 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:56,188 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:56,189 - logger - download_regional_data - 113 - Start to download the region data for 韩国.
+2020-02-04 16:40:56,495 - logger - download_regional_data - 128 -     8 REGIONAL records were retrieved.
+2020-02-04 16:40:56,495 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:56,496 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:56,496 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:56,496 - logger - download_regional_data - 113 - Start to download the region data for 香港.
+2020-02-04 16:40:56,805 - logger - download_regional_data - 128 -    19 REGIONAL records were retrieved.
+2020-02-04 16:40:56,806 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:56,806 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:56,806 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:56,807 - logger - download_regional_data - 113 - Start to download the region data for 马来西亚.
+2020-02-04 16:40:57,088 - logger - download_regional_data - 128 -     7 REGIONAL records were retrieved.
+2020-02-04 16:40:57,089 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:57,089 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:57,089 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:57,089 - logger - download_regional_data - 113 - Start to download the region data for 黑龙江省.
+2020-02-04 16:40:58,064 - logger - download_regional_data - 128 -    42 REGIONAL records were retrieved.
+2020-02-04 16:40:58,064 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:58,064 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:58,076 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:58,076 - logger - download_regional_data - 113 - Start to download the region data for 待明确地区.
+2020-02-04 16:40:59,551 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:40:59,551 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:59,552 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:59,552 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:59,552 - logger - download_regional_data - 113 - Start to download the region data for 比利时.
+2020-02-04 16:40:59,825 - logger - download_regional_data - 128 -     1 REGIONAL records were retrieved.
+2020-02-04 16:40:59,825 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:40:59,826 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:40:59,826 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:40:59,826 - logger - download_regional_data - 113 - Start to download the region data for 瑞典.
+2020-02-04 16:41:00,075 - logger - download_regional_data - 128 -     2 REGIONAL records were retrieved.
+2020-02-04 16:41:00,077 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:41:00,077 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:41:00,077 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:41:00,077 - logger - download_regional_data - 113 - Start to download the region data for 菲律宾.
+2020-02-04 16:41:02,112 - logger - download_regional_data - 128 -     3 REGIONAL records were retrieved.
+2020-02-04 16:41:02,112 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:41:02,112 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:41:02,113 - logger - download_regional_data - 170 - Finish successfully!
+2020-02-04 16:41:02,113 - logger - download_regional_data - 113 - Start to download the region data for 西班牙.
+2020-02-04 16:41:07,335 - logger - download_regional_data - 128 -     4 REGIONAL records were retrieved.
+2020-02-04 16:41:07,336 - logger - db_create_regiondata_table - 263 - index region_data_indx already exists
+2020-02-04 16:41:07,336 - logger - db_create_citydata_table - 365 - index city_data_indx already exists
+2020-02-04 16:41:07,337 - logger - download_regional_data - 170 - Finish successfully!
