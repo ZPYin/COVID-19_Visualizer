@@ -45,6 +45,8 @@ def download_overall_data():
         db.db_insert_overall_entry(entry)
     logger.info('Finish successfully!')
 
+    return OverallData
+
 
 def download_all_regionNames():
     """
@@ -69,6 +71,8 @@ def download_all_regionNames():
 
     logger.info('Finish successfully!')
 
+    return regionNames
+
 
 def download_all_regional_data():
     """
@@ -81,15 +85,44 @@ def download_all_regional_data():
         download_regional_data(regionName)
 
 
-def download_regional_data(province='湖北省'):
+def download_regional_data(province='湖北省', maxNReq=3):
     """
     download the statistics for a give province/area.
+
+    Parameters
+    ----------
+    province: str
+        province name. e.g., '湖北省
+    maxNReq: int
+        maximumn request number. (defaults: 3)
+
+    Returns
+    -------
+    regionalData: dict
+        region data.
     """
 
+    reqCount = 0
+    isSuccess = False
+
     # access the regional data
-    logger.info('Start to download the region data for {0}.'.format(province))
-    regionalRes = requests.get('{0}/area'.format(API_URI),
-                               params={'latest': '0', 'province': province})
+    while reqCount <= maxNReq and (not isSuccess):
+        try:
+            reqCount = reqCount + 1
+            logger.info(
+                'Start to download the region data for {0}.'.format(province))
+            regionalRes = requests.get('{0}/area'.format(API_URI),
+                                       params={
+                                                'latest': '0',
+                                                'province': province},
+                                       timeout=15)
+            isSuccess = True
+        except Exception as e:
+            if reqCount <= maxNReq:
+                logger.warn('Failed in {0} try.'.format(reqCount))
+            else:
+                logger.warn('Failed in 3 tries, exit!')
+                regionalRes.raise_for_status()
     regionalData = json.loads(regionalRes.text, encoding='utf-8')
     logger.info('{0:5d} REGIONAL records were retrieved.'.format(
         len(regionalData['results'])
@@ -135,3 +168,15 @@ def download_regional_data(province='湖北省'):
                 db.db_insert_citydata_entry(cityEntry)
 
     logger.info('Finish successfully!')
+
+    return regionalData
+
+
+def main():
+    download_all_regionNames()
+    download_overall_data()
+    download_all_regional_data()
+
+
+if __name__ == "__main__":
+    main()

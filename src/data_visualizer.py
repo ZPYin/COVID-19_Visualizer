@@ -15,6 +15,7 @@ import os
 import sys
 import csv
 import re
+import shutil
 
 plt.switch_backend('Agg')
 
@@ -109,15 +110,28 @@ def display_recent_overall(pic_file):
     plt.savefig(pic_file)
 
 
-def display_recent_overall_distribution(pic_file):
+def display_recent_overall_distribution(pic_file, maxCount=500):
+    """
+    display the distribution of recent total numbers of nation-wide confirmed
+    patients in China.
+
+    Parameters
+    ----------
+    pic_file: str
+        absolute path of the generated figure.
+    maxCount: int
+        maximumn count of colorbar. (default: 500)
+    """
 
     conn = db.connect(dbFile)
     cu = conn.cursor()
     cu.execute(
         """select provinceShortName, confirmedCount
-        from Region_Data where updateTime in
-        (select max(rd.updateTime)
-        from Region_Data rd where rd.country = '中国' group by rd.region_id);
+        from Region_Data
+        where updateTime in (select max(updateTime)
+        from Region_Data r_d
+        where r_d.country='中国' and r_d.region_id=Region_Data.region_id)
+        group by Region_Data.region_id;
         """)
     recentProvinceData = cu.fetchall()
 
@@ -132,21 +146,36 @@ def display_recent_overall_distribution(pic_file):
     map_1.set_global_opts(
         title_opts=opts.TitleOpts(title="{0}全国各省感染总人数".
                                   format(recentTimeObj.strftime('%y-%m-%d'))),
-        visualmap_opts=opts.VisualMapOpts(max_=500)
+        visualmap_opts=opts.VisualMapOpts(max_=maxCount)
         )
     map_1.add("{0}全国各省感染总人数".format(recentTimeObj.strftime('%y-%m-%d')),
               list1,
               maptype="china")
+    html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
+    tmpHtmlFile = map_1.render()
+    shutil.move(tmpHtmlFile, html_file)
     make_snapshot(
         snapshot,
-        file_name=map_1.render(),
+        file_name=html_file,
         output_name=pic_file,
         delay=2,
         pixel_ratio=2,
-        is_remove_html=True)
+        is_remove_html=False)
 
 
-def display_recent_provincial_distribution(province, pic_file):
+def display_recent_provincial_distribution(province, pic_file, maxCount=500):
+    """
+    display the distribution of recent total numbers of confirmed patients.
+
+    Parameters
+    ----------
+    province: str
+        province name. e.g., '湖北省'
+    pic_file: str
+        absolute path of the generated figure.
+    maxCount: int
+        maximumn count of colorbar. (default: 500)
+    """
 
     conn = db.connect(dbFile)
     cu = conn.cursor()
@@ -156,13 +185,16 @@ def display_recent_provincial_distribution(province, pic_file):
     recentTimeObj = dt.datetime.utcfromtimestamp(int(recentTime[0]) / 1000)
 
     cu.execute(
+        
         """select cityName, confirmedCount
-        from City_Data where updateTime in
-        (select max(c_d.updateTime)
-        from City_Data c_d
-        inner join Region_Name r_n
-        where c_d.country = '中国' and r_n.name=(?) and c_d.region_id = r_n.id
-        group by c_d.cityName);""", (province,))
+        from City_Data
+        where City_Data.region_id=
+        (select id from Region_Name where Region_Name.name=(?))
+        and updateTime in (select max(updateTime)
+        from City_Data
+        where City_Data.region_id=
+        (select id from Region_Name where Region_Name.name=(?)))
+        group by City_Data.cityName;""", (province, province))
     hubeiProvinceData = cu.fetchall()
 
     cu.execute("""select provinceShortName from Region_Data
@@ -179,20 +211,23 @@ def display_recent_provincial_distribution(province, pic_file):
         title_opts=opts.TitleOpts(title="{0} {1}感染人数".
                                   format(recentTimeObj.strftime('%y-%m-%d'),
                                          province)),
-        visualmap_opts=opts.VisualMapOpts(max_=500)
+        visualmap_opts=opts.VisualMapOpts(max_=maxCount)
         )
     map_2.add("{0} {1}感染人数".format(
                 recentTimeObj.strftime('%y-%m-%d'),
                 province),
               list2,
               maptype=hubeiProvinceShortName)
+    html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
+    tmpHtmlFile = map_2.render()
+    shutil.move(tmpHtmlFile, html_file)
     make_snapshot(
         snapshot,
-        file_name=map_2.render(),
+        file_name=html_file,
         output_name=pic_file,
         delay=2,
         pixel_ratio=2,
-        is_remove_html=True)
+        is_remove_html=False)
 
 
 def main():

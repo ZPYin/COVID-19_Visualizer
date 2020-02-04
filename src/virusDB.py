@@ -18,7 +18,7 @@ class virusDB():
             conn = db.connect(self.dbFile)
             logger.info(db.version)
             logger.info(
-                            'Successfully conect to the database:\n{}'.
+                            'Successfully connect to the database:\n{}'.
                             format(self.dbFile)
                         )
         except db.Error as e:
