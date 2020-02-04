@@ -19,7 +19,6 @@ import re
 plt.switch_backend('Agg')
 
 # add search path of phantomjs
-sys.path.append('/Users/yinzhenping/Downloads/phantomjs-2.1.1-macosx/bin')
 projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 dbFile = os.path.join(projectDir, 'db', '2019_nCov_data.db')
