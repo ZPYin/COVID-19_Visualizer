@@ -98,14 +98,14 @@ def display_recent_overall(pic_file):
 
     s1 = ax1.scatter(overallTime, overallConfirmedCounts, 3, color='r')
     s2 = ax1.scatter(overallTime, overallSuspectedCounts, 3, color='k')
-    ax1.set_ylabel(u'人数')
+    ax1.set_ylabel(u'确诊／疑似人数')
     ax2 = ax1.twinx()
     s3 = ax2.scatter(overallTime, overallCuredCounts, 3, color='g')
-    ax2.set_ylabel(u'人数')
+    ax2.set_ylabel(u'治愈人数')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator())
     plt.xlim([dt.datetime(2020, 1, 24), max(overallTime)])
-    plt.legend((s1, s2, s3), (u'确证人数', u'疑似人数', u'治愈人数'))
+    plt.legend((s1, s2, s3), (u'确诊人数', u'疑似人数', u'治愈人数'))
 
     plt.savefig(pic_file)
 
