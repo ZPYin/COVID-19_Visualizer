@@ -2,5 +2,5 @@ log
 .vscode
 src/__pycache__
 tests/__pycache__
-img/*.eddx
+*.eddx
 db/test.db
