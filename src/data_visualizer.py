@@ -104,7 +104,7 @@ def display_recent_overall(pic_file):
     ax2.set_ylabel(u'人数')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator())
-    plt.xlim([dt.datetime(2020, 1, 23), dt.datetime(2020, 2, 1)])
+    plt.xlim([dt.datetime(2020, 1, 24), max(overallTime)])
     plt.legend((s1, s2, s3), (u'确证人数', u'疑似人数', u'治愈人数'))
 
     plt.savefig(pic_file)
@@ -185,7 +185,6 @@ def display_recent_provincial_distribution(province, pic_file, maxCount=500):
     recentTimeObj = dt.datetime.utcfromtimestamp(int(recentTime[0]) / 1000)
 
     cu.execute(
-        
         """select cityName, confirmedCount
         from City_Data
         where City_Data.region_id=
