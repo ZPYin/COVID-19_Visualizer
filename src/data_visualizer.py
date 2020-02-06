@@ -7,6 +7,7 @@ from pyecharts import options as opts
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib import font_manager
+import pandas as pd
 import datetime as dt
 
 import sqlite3 as db
@@ -77,36 +78,46 @@ def searchCityLongName(cityName):
 def display_recent_overall(pic_file):
 
     conn = db.connect(dbFile)
-    cu = conn.cursor()
 
-    cu.execute("""SELECT * FROM Overall;""")
-    overallData = cu.fetchall()
-    overallConfirmedCounts = []
-    overallSuspectedCounts = []
-    overallCuredCounts = []
-    overallTime = []
-    for record in overallData:
-        overallTime.append(dt.datetime.utcfromtimestamp(record[1] / 1000))
-        overallConfirmedCounts.append(record[2])
-        overallSuspectedCounts.append(record[3])
-        overallCuredCounts.append(record[4])
+    overallData = pd.read_sql_query("""SELECT * FROM Overall;""", conn)
+    overallData['date'] = pd.to_datetime(
+        overallData['time'] / 1000, unit='s')
+    overallData = overallData.set_index('date')
+    dailyMeanOverall = overallData.resample('D').mean().round()
 
     plt.rcParams['font.family'] = ['Arial Unicode MS']
     plt.rcParams['axes.unicode_minus'] = False
 
     fig, ax1 = plt.subplots(figsize=(8, 5))
 
-    s1 = ax1.scatter(overallTime, overallConfirmedCounts, 3, color='r')
-    s2 = ax1.scatter(overallTime, overallSuspectedCounts, 3, color='k')
-    ax1.set_ylabel(u'确诊／疑似人数')
+    s1, = ax1.plot(
+        dailyMeanOverall.index,
+        dailyMeanOverall['confirmedCount'],
+        color='r', marker='o')
+    s2, = ax1.plot(
+        dailyMeanOverall.index,
+        dailyMeanOverall['suspectedCount'],
+        color='k', marker='o')
+    ax1.set_ylabel(u'确诊／疑似 人数')
     ax2 = ax1.twinx()
-    s3 = ax2.scatter(overallTime, overallCuredCounts, 3, color='g')
-    ax2.set_ylabel(u'治愈人数')
+    s3, = ax2.plot(
+        dailyMeanOverall.index,
+        dailyMeanOverall['curedCount'],
+        color='g', marker='o')
+    s4, = ax2.plot(
+        dailyMeanOverall.index,
+        dailyMeanOverall['deadCount'],
+        color='b', marker='o')
+    ax2.set_ylabel(u'治愈／死亡 人数')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator())
-    plt.xlim([dt.datetime(2020, 1, 24), max(overallTime)])
-    plt.legend((s1, s2, s3), (u'确诊人数', u'疑似人数', u'治愈人数'))
-
+    plt.xlim(
+        [dt.datetime(2020, 1, 23),
+         max(dailyMeanOverall.index) + dt.timedelta(days=1)])
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=50)
+    plt.legend(
+        (s1, s2, s3, s4),
+        (u'确诊人数', u'疑似人数', u'治愈人数', u'死亡人数'))
     plt.savefig(pic_file)
 
 
@@ -236,8 +247,8 @@ def main():
     pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 
     display_recent_overall(pic_file_1)
-    display_recent_overall_distribution(pic_file_2)
-    display_recent_provincial_distribution(province, pic_file_3)
+    # display_recent_overall_distribution(pic_file_2)
+    # display_recent_provincial_distribution(province, pic_file_3)
 
 
 if __name__ == "__main__":
