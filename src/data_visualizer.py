@@ -110,7 +110,7 @@ def display_recent_overall(pic_file):
         color='b', marker='o')
     ax2.set_ylabel(u'治愈／死亡 人数')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=2))
     plt.xlim(
         [dt.datetime(2020, 1, 23),
          max(dailyMeanOverall.index) + dt.timedelta(days=1)])
@@ -247,8 +247,8 @@ def main():
     pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 
     display_recent_overall(pic_file_1)
-    # display_recent_overall_distribution(pic_file_2)
-    # display_recent_provincial_distribution(province, pic_file_3)
+    display_recent_overall_distribution(pic_file_2)
+    display_recent_provincial_distribution(province, pic_file_3)
 
 
 if __name__ == "__main__":
