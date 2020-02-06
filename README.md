@@ -24,9 +24,9 @@ pip install -r requirements.txt
 ## Results
 
 <p align='center'>
-<img src='img/overall_distribution.png', width=550, height=300, lat='overall_distribution'>
+<img src='img/lineplot_overall.png', width=550, height=350, lat='overall_plot'>
 <br>
-<b>Regional distribution of 2019-nCov patients in China</b>
+<b>Time series of 2019-nCov patients in China</b>
 
 Detailed results can be found in [2019-nCov-stats.md](docs/2019-coronavirus-stats.md)
 
