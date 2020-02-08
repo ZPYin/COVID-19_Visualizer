@@ -8,7 +8,7 @@ This project is aimed to guide myself through the whole process of how to create
 
 `data_downloader`
 
-1. download the data through the [API](#1) provided by someone anonymous. Here, I'm appreciated for the efforts that the anonymous author made to share the data.
+1. download the data through the [API][1] provided by someone anonymous. Here, I'm appreciated for the efforts that the anonymous author made to share the data.
 2. save the data records to SQLite3 database, which is stored under the folder of `db`.
 
 <p align='center'>
