@@ -2,11 +2,11 @@
 
 ## Description
 
-Novel Coronavirus 2019 ([2019-nCov](#1)) has been spread crazily in China even over the world since the end of 2019. Thousands of people were infected in less than one month. In order to closely monitor the outbreak and developing phase of this disease, this repo was created to give you some quicklooks of how it looks like in China NOW.
+Novel Coronavirus 2019 ([2019-nCov](https://www.cdc.gov/coronavirus/2019-ncov/index.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2Fnovel-coronavirus-2019.html)) has been spread crazily in China even over the world since the end of 2019. Thousands of people were infected in less than one month. In order to closely monitor the outbreak and developing phase of this disease, this repo was created to give you some quicklooks of how it looks like in China NOW.
 
-The raw data was collected by Chinese government and distributed by some well-known public platforms in China (e.g., [DingXiangYuan](#2)(丁香园)). The dataset used in the analysis was accessed through the [API](#3) provided by [BlanKerL](#5) (BIG thanks).
+The raw data was collected by Chinese government and distributed by some well-known public platforms in China (e.g., [DingXiangYuan](http://www.dxy.cn/)(丁香园)). The dataset used in the analysis was accessed through the [API](https://lab.isaaclin.cn/nCoV/) provided by [BlanKerL](https://github.com/BlankerL) (BIG thanks).
 
-For those only interested in the csv-format data, you can turn to the [data repository](#4).
+For those only interested in the csv-format data, you can turn to the [data repository](https://github.com/BlankerL/DXY-2019-nCoV-Data).
 
 ## Requirements
 
@@ -33,9 +33,3 @@ Detailed results can be found in [2019-nCov-stats.md](docs/2019-coronavirus-stat
 ## Contact
 
 Zhenping Yin <zp.yin@whu.edu.cn>
-
-[1]: https://www.cdc.gov/coronavirus/2019-ncov/index.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2Fnovel-coronavirus-2019.html
-[2]: http://www.dxy.cn/
-[3]: https://lab.isaaclin.cn/nCoV/
-[4]: https://github.com/BlankerL/DXY-2019-nCoV-Data
-[5]: https://github.com/BlankerL
