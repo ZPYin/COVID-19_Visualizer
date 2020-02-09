@@ -8,10 +8,7 @@ API_URI = 'https://lab.isaaclin.cn/nCoV/api/'
 PROJECTDIR = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))
 )
-
-dbFile = os.path.join(PROJECTDIR, 'db', '2019_nCov_data.db')
-db = virusDB(dbFile)
-db.db_connect()
+DBFILE = os.path.join(PROJECTDIR, 'db', '2019_nCov_data.db')
 
 
 def download_overall_data(maxNReq=3):
@@ -23,6 +20,9 @@ def download_overall_data(maxNReq=3):
     maxNReq: int
         maximumn request number. (default: 3)
     """
+
+    db = virusDB(DBFILE)
+    db.db_connect()
 
     reqCount = 0
     isSuccess = False
@@ -65,6 +65,9 @@ def download_overall_data(maxNReq=3):
         db.db_insert_overall_entry(entry)
     logger.info('Finish successfully!')
 
+    db.db_clean()
+    db.db_close()
+
     return OverallData
 
 
@@ -77,6 +80,9 @@ def download_all_regionNames(maxNReq=3):
     maxNReq: int
         maximumn request number. (default: 3)
     """
+
+    db = virusDB(DBFILE)
+    db.db_connect()
 
     reqCount = 0
     isSuccess = False
@@ -108,6 +114,9 @@ def download_all_regionNames(maxNReq=3):
 
         db.db_insert_regionname_entry(entry)
 
+    db.db_clean()
+    db.db_close()
+
     logger.info('Finish successfully!')
 
     return regionNames
@@ -118,10 +127,16 @@ def download_all_regional_data():
     download the statistics for all regions and the respective cities inside.
     """
 
+    db = virusDB(DBFILE)
+    db.db_connect()
+
     regionNames = db.db_fetch_regionnames()
 
     for regionName in regionNames.keys():
         download_regional_data(regionName)
+
+    db.db_clean()
+    db.db_close()
 
 
 def download_regional_data(province='湖北省', maxNReq=3):
@@ -140,6 +155,9 @@ def download_regional_data(province='湖北省', maxNReq=3):
     regionalData: dict
         region data.
     """
+
+    db = virusDB(DBFILE)
+    db.db_connect()
 
     reqCount = 0
     isSuccess = False
@@ -206,6 +224,9 @@ def download_regional_data(province='湖北省', maxNReq=3):
                 }
 
                 db.db_insert_citydata_entry(cityEntry)
+
+    db.db_clean()
+    db.db_close()
 
     logger.info('Finish successfully!')
 

@@ -17,10 +17,6 @@ class virusDB():
         try:
             conn = db.connect(self.dbFile)
             logger.info(db.version)
-            logger.info(
-                            'Successfully connect to the database:\n{}'.
-                            format(self.dbFile)
-                        )
         except db.Error as e:
             logger.warn(e)
             raise e
@@ -49,8 +45,6 @@ class virusDB():
                     unique (time));
                 """)
             self.conn.commit()
-
-            logger.info('Create the Overall table successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -93,7 +87,6 @@ class virusDB():
                     item_tuple)
                 self.conn.commit()
                 c.close()
-
             except db.Error as e:
                 logger.error(e)
                 return False
@@ -115,8 +108,6 @@ class virusDB():
                 """DROP TABLE Overall;"""
             )
             self.conn.commit()
-
-            logger.info('Delete the Overall successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -141,8 +132,6 @@ class virusDB():
                         unique(name));
                     """)
             self.conn.commit()
-
-            logger.info('Create the Region_Name table successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -177,7 +166,6 @@ class virusDB():
                     """, item_tuple)
                 self.conn.commit()
                 c.close()
-
             except db.Error as e:
                 logger.error(e)
                 return
@@ -216,8 +204,6 @@ class virusDB():
                 """DROP TABLE Region_Name;"""
             )
             self.conn.commit()
-
-            logger.info('Delete the Region_Name successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -256,9 +242,6 @@ class virusDB():
                 """CREATE UNIQUE INDEX region_data_indx ON Region_Data
                 (region_id, updateTime);""")
             self.conn.commit()
-
-            logger.info(
-                'Create the Region_Data table successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -297,10 +280,13 @@ class virusDB():
             try:
                 c = self.conn.cursor()
                 c.execute(
-                    """INSERT OR IGNORE INTO Region_Data (provinceName, provinceShortName, confirmedCount, suspectedCount, curedCount, deadCount, country, updateTime, region_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)""", item_tuple)
+                    """INSERT OR IGNORE INTO Region_Data
+                    (provinceName, provinceShortName, confirmedCount,
+                    suspectedCount, curedCount, deadCount, country,
+                    updateTime, region_id)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)""", item_tuple)
                 self.conn.commit()
                 c.close()
-
             except db.Error as e:
                 logger.error(e)
                 return False
@@ -322,8 +308,6 @@ class virusDB():
                 """DROP TABLE Region_Data;"""
             )
             self.conn.commit()
-
-            logger.info('Delete the Region_Data successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -356,11 +340,9 @@ class virusDB():
                 FOREIGN KEY (region_id)
                 REFERENCES Region_Name (id)
             );""")
-            c.execute("""CREATE UNIQUE INDEX city_data_indx ON City_Data(region_id, cityName, updateTime)""")
+            c.execute("""CREATE UNIQUE INDEX city_data_indx
+            ON City_Data(region_id, cityName, updateTime)""")
             self.conn.commit()
-
-            logger.info(
-                'Create the City_Data table successfully.')
         except db.Error as e:
             logger.error(e)
             return False
@@ -398,10 +380,13 @@ class virusDB():
             try:
                 c = self.conn.cursor()
                 c.execute(
-                    """INSERT OR IGNORE INTO City_Data (updateTime, cityName, confirmedCount, suspectedCount, curedCount, deadCount, country, region_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);""", item_tuple)
+                    """INSERT OR IGNORE INTO City_Data
+                    (updateTime, cityName, confirmedCount,
+                    suspectedCount, curedCount, deadCount,
+                    country, region_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);""",
+                    item_tuple)
                 self.conn.commit()
                 c.close()
-
             except db.Error as e:
                 logger.error(e)
                 return False
@@ -423,8 +408,36 @@ class virusDB():
                 """DROP TABLE City_Data;"""
             )
             self.conn.commit()
+        except db.Error as e:
+            logger.error(e)
+            return False
 
-            logger.info('Delete the City_Data successfully.')
+        return True
+
+    def db_clean(self):
+        """
+        remove unrealistic data entries.
+        """
+
+        if self.conn is None:
+            logger.warn('database does not exist')
+            return False
+
+        try:
+            c = self.conn.cursor()
+            c.execute(
+                """DELETE FROM Overall WHERE time=1581207006607;
+                """
+            )
+            c.execute(
+                """DELETE FROM City_Data WHERE updateTime=1581207006607;
+                """
+            )
+            c.execute(
+                """DELETE FROM Region_Data WHERE updateTime=1581207006607;
+                """
+            )
+            self.conn.commit()
         except db.Error as e:
             logger.error(e)
             return False
