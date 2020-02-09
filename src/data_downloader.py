@@ -42,7 +42,7 @@ def download_overall_data(maxNReq=3):
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
             else:
-                logger.warn('Failed in 3 tries, exit!')
+                logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 OverallRes.raise_for_status()
 
     OverallData = json.loads(OverallRes.text, encoding='utf-8')
@@ -94,7 +94,7 @@ def download_all_regionNames(maxNReq=3):
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
             else:
-                logger.warn('Failed in 3 tries, exit!')
+                logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 regionNamesRes.raise_for_status()
 
     regionNames = json.loads(regionNamesRes.text, encoding='utf-8')
@@ -160,7 +160,7 @@ def download_regional_data(province='湖北省', maxNReq=3):
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
             else:
-                logger.warn('Failed in 3 tries, exit!')
+                logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 regionalRes.raise_for_status()
 
     regionalData = json.loads(regionalRes.text, encoding='utf-8')
