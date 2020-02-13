@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import time
 from logger import logger
 from virusDB import virusDB
 
@@ -11,7 +12,7 @@ PROJECTDIR = os.path.dirname(
 DBFILE = os.path.join(PROJECTDIR, 'db', '2019_nCov_data.db')
 
 
-def download_overall_data(maxNReq=3):
+def download_overall_data(maxNReq=3, pause=3):
     """
     download the statistics for China.
 
@@ -19,6 +20,8 @@ def download_overall_data(maxNReq=3):
     ----------
     maxNReq: int
         maximumn request number. (default: 3)
+    pause: int
+        sleep time in seconds between queries. (default: 3)
     """
 
     db = virusDB(DBFILE)
@@ -36,16 +39,18 @@ def download_overall_data(maxNReq=3):
                 '{0}/overall'.format(API_URI),
                 params={'latest': '0'},
                 timeout=10)
+            OverallData = json.loads(OverallRes.text, encoding='utf-8')
 
             isSuccess = True
         except Exception as e:
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
+                logger.error(e)
+                time.sleep(pause)
             else:
                 logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 OverallRes.raise_for_status()
 
-    OverallData = json.loads(OverallRes.text, encoding='utf-8')
     logger.info('{0:5d} OVERALL records were retrieved.'.format(
         len(OverallData['results']))
         )
@@ -71,7 +76,7 @@ def download_overall_data(maxNReq=3):
     return OverallData
 
 
-def download_all_regionNames(maxNReq=3):
+def download_all_regionNames(maxNReq=3, pause=3):
     """
     download the list of the supported area.
 
@@ -79,6 +84,8 @@ def download_all_regionNames(maxNReq=3):
     ----------
     maxNReq: int
         maximumn request number. (default: 3)
+    pause: int
+        sleep time in seconds between queries. (default: 3)
     """
 
     db = virusDB(DBFILE)
@@ -94,16 +101,18 @@ def download_all_regionNames(maxNReq=3):
             logger.info('Start to download the region names.')
             regionNamesRes = requests.get('{0}/provinceName'.format(API_URI),
                                           timeout=10)
+            regionNames = json.loads(regionNamesRes.text, encoding='utf-8')
 
             isSuccess = True
         except Exception as e:
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
+                logger.error(e)
+                time.sleep(pause)
             else:
                 logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 regionNamesRes.raise_for_status()
 
-    regionNames = json.loads(regionNamesRes.text, encoding='utf-8')
     logger.info('{0:5d} region names were retrieved.'.format(
         len(regionNames['results'])))
     # save the region names to the database
@@ -122,9 +131,14 @@ def download_all_regionNames(maxNReq=3):
     return regionNames
 
 
-def download_all_regional_data():
+def download_all_regional_data(pause=3):
     """
     download the statistics for all regions and the respective cities inside.
+
+    Parameters
+    ----------
+    pause: int
+        sleep time in seconds between two queries. (defaults: 3)
     """
 
     db = virusDB(DBFILE)
@@ -134,12 +148,13 @@ def download_all_regional_data():
 
     for regionName in regionNames.keys():
         download_regional_data(regionName)
+        time.sleep(pause)
 
     db.db_clean()
     db.db_close()
 
 
-def download_regional_data(province='湖北省', maxNReq=3):
+def download_regional_data(province='湖北省', maxNReq=3, pause=3):
     """
     download the statistics for a give province/area.
 
@@ -149,6 +164,8 @@ def download_regional_data(province='湖北省', maxNReq=3):
         province name. e.g., '湖北省
     maxNReq: int
         maximumn request number. (defaults: 3)
+    pause: int
+        sleep time in seconds between queries. (default: 3)
 
     Returns
     -------
@@ -173,15 +190,18 @@ def download_regional_data(province='湖北省', maxNReq=3):
                                                 'latest': '0',
                                                 'province': province},
                                        timeout=15)
+            regionalData = json.loads(regionalRes.text, encoding='utf-8')
+
             isSuccess = True
         except Exception as e:
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
+                logger.error(e)
+                time.sleep(3)
             else:
                 logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
-                regionalRes.raise_for_status()
+                raise IOError
 
-    regionalData = json.loads(regionalRes.text, encoding='utf-8')
     logger.info('{0:5d} REGIONAL records were retrieved.'.format(
         len(regionalData['results'])
     ))

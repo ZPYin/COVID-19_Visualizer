@@ -16,7 +16,6 @@ class virusDB():
         conn = None
         try:
             conn = db.connect(self.dbFile)
-            logger.info(db.version)
         except db.Error as e:
             logger.warn(e)
             raise e
