@@ -257,6 +257,7 @@ def main():
     download_all_regionNames()
     download_overall_data()
     download_all_regional_data()
+    # download_regional_data(province='湖北省')
 
 
 if __name__ == "__main__":

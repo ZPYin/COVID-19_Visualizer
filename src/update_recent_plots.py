@@ -19,7 +19,7 @@ pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 
 try:
     download_all_regionNames()
-except expression as e:
+except Exception as e:
     pass
 time.sleep(3)
 
@@ -33,7 +33,7 @@ time.sleep(3)
 
 try:
     download_all_regional_data(pause=10)
-except expression as e:
+except Exception as e:
     pass
 logger.info("""Display color-plot of distribution of
             confirmed patients in China""")
