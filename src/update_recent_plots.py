@@ -8,14 +8,17 @@ from logger import logger
 
 import os
 import sys
+import time
 
 # add search path of phantomjs
 projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # download data
 download_all_regionNames()
+time.sleep(3)
 download_overall_data()
-download_all_regional_data()
+time.sleep(3)
+download_all_regional_data(pause=10)
 
 # display
 province = u'湖北省'
