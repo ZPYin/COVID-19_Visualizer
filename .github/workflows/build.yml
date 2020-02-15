@@ -1,11 +1,11 @@
-name: COVID-19
+name: Update COVID-19
 
 on: 
   push:
     branches: 
       - master
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '0 */3 * * *'
 
 jobs:
   build:
@@ -16,21 +16,35 @@ jobs:
         python-version: [3.6, 3.5]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
+
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@1
+      uses: actions/setup-python@master
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Install PhantomJS
+      run: |
+        export PHANTOMJS_VERSION=2.1.1
+        export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
+        if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi
+        if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2; fi
+        if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi
+        phantomjs --version
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Lint with pycodestyle
       run: |
         pycodestyle --max-line-length=80 --max-doc-length=80 *.py
+
     - name: Test with unittest
       run: |
         python -m unittest discover -s tests
+
     - name: Update the figures
       run: |
         python src/update_recent_plots.py
