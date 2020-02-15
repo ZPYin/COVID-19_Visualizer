@@ -1,6 +1,5 @@
 # 2019-nCov Visualizer
-
-## Description
+![Update COVID-19](https://github.com/ZPYin/COVID-19_Visualizer/workflows/Update%20COVID-19/badge.svg?branch=master)
 
 Novel Coronavirus 2019 ([2019-nCov][1]) has been spread crazily in China even over the world since the end of 2019. Thousands of people were infected in less than one month. In order to closely monitor the outbreak and developing phase of this disease, this repo was created to give you some quicklooks of how it looks like in China NOW.
 
