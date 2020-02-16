@@ -85,8 +85,8 @@ def display_recent_overall(pic_file):
     overallData = overallData.set_index('date')
     dailyMeanOverall = overallData.resample('D').mean().round()
 
-    plt.rcParams['font.family'] = ['Arial Unicode MS']
-    plt.rcParams['axes.unicode_minus'] = False
+    # plt.rcParams['font.family'] = ['Arial Unicode MS']
+    # plt.rcParams['axes.unicode_minus'] = False
 
     fig, ax1 = plt.subplots(figsize=(8, 5))
 
@@ -98,7 +98,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall.index,
         dailyMeanOverall['suspectedCount'],
         color='k', marker='o')
-    ax1.set_ylabel(u'确诊／疑似 人数')
+    ax1.set_ylabel('confirmed/suspected number')
     ax2 = ax1.twinx()
     s3, = ax2.plot(
         dailyMeanOverall.index,
@@ -108,7 +108,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall.index,
         dailyMeanOverall['deadCount'],
         color='b', marker='o')
-    ax2.set_ylabel(u'治愈／死亡 人数')
+    ax2.set_ylabel('cured/dead number')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=2))
     plt.xlim(
@@ -117,7 +117,7 @@ def display_recent_overall(pic_file):
     plt.setp(ax1.xaxis.get_majorticklabels(), rotation=50)
     plt.legend(
         (s1, s2, s3, s4),
-        (u'确诊人数', u'疑似人数', u'治愈人数', u'死亡人数'))
+        ('confirmed', 'suspected', 'cured', 'dead'))
     plt.savefig(pic_file)
 
 
