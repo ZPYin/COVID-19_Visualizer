@@ -5,7 +5,7 @@ on:
     branches: 
       - master
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */6 * * *'
 
 jobs:
   build:
@@ -17,9 +17,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v1
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@master
