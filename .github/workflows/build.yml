@@ -63,7 +63,7 @@ jobs:
 
     - name: Lint with pycodestyle
       run: |
-        pycodestyle --max-line-length=80 --max-doc-length=80 *.py
+        pycodestyle --max-line-length=80 --max-doc-length=80 src/*.py
 
     - name: Test with unittest
       run: |
