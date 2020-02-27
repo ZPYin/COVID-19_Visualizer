@@ -121,7 +121,7 @@ def display_recent_overall(pic_file):
     plt.savefig(pic_file)
 
 
-def display_recent_overall_distribution(pic_file, maxCount=500):
+def display_recent_overall_distribution(pic_file, maxCount=500, **kwargs):
     """
     display the distribution of recent total numbers of nation-wide confirmed
     patients in China.
@@ -169,12 +169,12 @@ def display_recent_overall_distribution(pic_file, maxCount=500):
         snapshot,
         file_name=html_file,
         output_name=pic_file,
-        delay=2,
-        pixel_ratio=2,
-        is_remove_html=False)
+        is_remove_html=False,
+        **kwargs)
 
 
-def display_recent_provincial_distribution(province, pic_file, maxCount=500):
+def display_recent_provincial_distribution(province, pic_file, maxCount=500,
+                                           **kwargs):
     """
     display the distribution of recent total numbers of confirmed patients.
 
@@ -235,9 +235,8 @@ def display_recent_provincial_distribution(province, pic_file, maxCount=500):
         snapshot,
         file_name=html_file,
         output_name=pic_file,
-        delay=2,
-        pixel_ratio=2,
-        is_remove_html=False)
+        is_remove_html=False,
+        **kwargs)
 
 
 def main():
@@ -247,8 +246,8 @@ def main():
     pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 
     display_recent_overall(pic_file_1)
-    display_recent_overall_distribution(pic_file_2)
-    display_recent_provincial_distribution(province, pic_file_3)
+    display_recent_overall_distribution(pic_file_2, pixel_ratio=1)
+    display_recent_provincial_distribution(province, pic_file_3, pixel_ratio=1)
 
 
 if __name__ == "__main__":

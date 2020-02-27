@@ -37,7 +37,8 @@ except Exception as e:
     pass
 logger.info("""Display color-plot of distribution of
             confirmed patients in China""")
-display_recent_overall_distribution(pic_file_2, maxCount=1000)
+display_recent_overall_distribution(pic_file_2, maxCount=1000, pixel_ratio=1)
 logger.info("""Display color-plot of distribution of
             confirmed patients in {0}""".format(province))
-display_recent_provincial_distribution(province, pic_file_3, maxCount=1000)
+display_recent_provincial_distribution(
+    province, pic_file_3, maxCount=1000, pixel_ratio=1)
