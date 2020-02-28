@@ -99,6 +99,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall['suspectedCount'],
         color='k', marker='o')
     ax1.set_ylabel('confirmed/suspected number')
+    ax1.set_ylim([0, 80000])
     ax2 = ax1.twinx()
     s3, = ax2.plot(
         dailyMeanOverall.index,
@@ -109,6 +110,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall['deadCount'],
         color='b', marker='o')
     ax2.set_ylabel('cured/dead number')
+    ax2.set_ylim([0, 40000])
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=2))
     plt.xlim(
