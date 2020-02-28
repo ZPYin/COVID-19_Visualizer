@@ -223,7 +223,7 @@ def download_regional_data(province='湖北省', maxNReq=3, pause=3):
             'suspectedCount': record['suspectedCount'],
             'curedCount': record['curedCount'],
             'deadCount': record['deadCount'],
-            'country': record['country'],
+            'country': record['countryName'],
             'updateTime': record['updateTime'],
             'region_id': region_id
         }
@@ -240,7 +240,7 @@ def download_regional_data(province='湖北省', maxNReq=3, pause=3):
                     'suspectedCount': cityRecord['suspectedCount'],
                     'curedCount': cityRecord['curedCount'],
                     'deadCount': cityRecord['deadCount'],
-                    'country': record['country'],
+                    'country': record['countryName'],
                     'region_id': cityRecord['confirmedCount'],
                     'confirmedCount': cityRecord['confirmedCount'],
                     'region_id': region_id
