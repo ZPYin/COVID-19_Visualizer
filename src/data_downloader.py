@@ -147,7 +147,10 @@ def download_all_regional_data(pause=3):
     regionNames = db.db_fetch_regionnames()
 
     for regionName in regionNames.keys():
-        download_regional_data(regionName)
+        try:
+            download_regional_data(regionName)
+        except Exception as e:
+            logger.error(e)
         time.sleep(pause)
 
     db.db_clean()
@@ -197,7 +200,7 @@ def download_regional_data(province='湖北省', maxNReq=3, pause=3):
             if reqCount <= maxNReq:
                 logger.warn('Failed in {0} try.'.format(reqCount))
                 logger.error(e)
-                time.sleep(3)
+                time.sleep(5)
             else:
                 logger.warn('Failed in {0} tries, exit!'.format(maxNReq))
                 raise IOError

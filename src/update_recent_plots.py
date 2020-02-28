@@ -18,23 +18,20 @@ pic_file_2 = os.path.join(projectDir, 'img', 'overall_distribution.png')
 pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 
 try:
-    download_all_regionNames()
+    download_all_regionNames(pause=5)
 except Exception as e:
-    pass
-time.sleep(3)
+    logger.error(e)
+time.sleep(5)
 
 try:
-    download_overall_data()
+    download_overall_data(pause=5)
 except Exception as e:
-    pass
+    logger.error(e)
 logger.info('Display line-plot of overall data.')
 display_recent_overall(pic_file_1)
-time.sleep(3)
+time.sleep(5)
 
-try:
-    download_all_regional_data(pause=10)
-except Exception as e:
-    pass
+download_all_regional_data(pause=5)
 logger.info("""Display color-plot of distribution of
             confirmed patients in China""")
 display_recent_overall_distribution(pic_file_2, maxCount=1000, pixel_ratio=1)
