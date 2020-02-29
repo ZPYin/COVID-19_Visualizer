@@ -85,9 +85,6 @@ def display_recent_overall(pic_file):
     overallData = overallData.set_index('date')
     dailyMeanOverall = overallData.resample('D').mean().round()
 
-    # plt.rcParams['font.family'] = ['Arial Unicode MS']
-    # plt.rcParams['axes.unicode_minus'] = False
-
     fig, ax1 = plt.subplots(figsize=(8, 5))
 
     s1, = ax1.plot(
@@ -156,23 +153,28 @@ def display_recent_overall_distribution(pic_file, maxCount=500, **kwargs):
     list1 = [[recentProvinceData[i][0], recentProvinceData[i][1]]
              for i in range(len(recentProvinceData))]
     map_1 = Map()
+    map_1.add("{0}全国各省感染总人数".format(recentTimeObj.strftime('%y-%m-%d')),
+              list1,
+              maptype="china", is_map_symbol_show=False)
     map_1.set_global_opts(
         title_opts=opts.TitleOpts(title="{0}全国各省感染总人数".
                                   format(recentTimeObj.strftime('%y-%m-%d'))),
         visualmap_opts=opts.VisualMapOpts(max_=maxCount)
         )
-    map_1.add("{0}全国各省感染总人数".format(recentTimeObj.strftime('%y-%m-%d')),
-              list1,
-              maptype="china")
-    html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
-    tmpHtmlFile = map_1.render()
-    shutil.move(tmpHtmlFile, html_file)
-    make_snapshot(
-        snapshot,
-        file_name=html_file,
-        output_name=pic_file,
-        is_remove_html=False,
-        **kwargs)
+
+    if 'notebook' in kwargs.keys():
+        if kwargs['notebook']:
+            map_1.render_notebook()
+    else:
+        html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
+        tmpHtmlFile = map_1.render()
+        shutil.move(tmpHtmlFile, html_file)
+        make_snapshot(
+            snapshot,
+            file_name=html_file,
+            output_name=pic_file,
+            is_remove_html=False,
+            **kwargs)
 
 
 def display_recent_provincial_distribution(province, pic_file, maxCount=500,
@@ -219,26 +221,32 @@ def display_recent_provincial_distribution(province, pic_file, maxCount=500,
               hubeiProvinceData[i][1]]
              for i in range(len(hubeiProvinceData))]
     map_2 = Map()
+    map_2.add("{0} {1}感染人数".format(
+                recentTimeObj.strftime('%y-%m-%d'),
+                province),
+              list2,
+              maptype=hubeiProvinceShortName,
+              is_map_symbol_show=False)
     map_2.set_global_opts(
         title_opts=opts.TitleOpts(title="{0} {1}感染人数".
                                   format(recentTimeObj.strftime('%y-%m-%d'),
                                          province)),
         visualmap_opts=opts.VisualMapOpts(max_=maxCount)
         )
-    map_2.add("{0} {1}感染人数".format(
-                recentTimeObj.strftime('%y-%m-%d'),
-                province),
-              list2,
-              maptype=hubeiProvinceShortName)
-    html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
-    tmpHtmlFile = map_2.render()
-    shutil.move(tmpHtmlFile, html_file)
-    make_snapshot(
-        snapshot,
-        file_name=html_file,
-        output_name=pic_file,
-        is_remove_html=False,
-        **kwargs)
+
+    if 'notebook' in kwargs.keys():
+        if kwargs['notebook']:
+            map_2.render_notebook()
+    else:
+        html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
+        tmpHtmlFile = map_2.render()
+        shutil.move(tmpHtmlFile, html_file)
+        make_snapshot(
+            snapshot,
+            file_name=html_file,
+            output_name=pic_file,
+            is_remove_html=False,
+            **kwargs)
 
 
 def main():
