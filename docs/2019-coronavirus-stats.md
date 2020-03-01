@@ -26,6 +26,11 @@ This project is aimed to guide myself through the whole process of how to create
 <b>Time series of 2019-nCov patients in China</b>
 
 <p align='center'>
+<img src='../img/global_distribution.png', width=550, height=300, lat='global_distribution'>
+<br>
+<b>Distribution of 2019-nCov patients worldwide</b>
+
+<p align='center'>
 <img src='../img/overall_distribution.png', width=550, height=300, lat='overall_distribution'>
 <br>
 <b>Provincial distribution of 2019-nCov patients in China</b>

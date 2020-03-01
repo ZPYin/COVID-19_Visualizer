@@ -25,6 +25,61 @@ projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 dbFile = os.path.join(projectDir, 'db', '2019_nCov_data.db')
 
+# from Chinese to English to support pyecharts
+COUNTRY_DICT = {
+    '尼日利亚': 'Nigeria',
+    '新西兰': 'New Zealand',
+    '立陶宛': 'Lithuania',
+    '菲律宾': 'Philippines',
+    '西班牙': 'Spain',
+    '越南': 'Vietnan',
+    '阿联酋': 'United Arab Emirates',
+    '韩国': 'Korea',
+    '马来西亚': 'Malaysia',
+    '埃及': 'Egypt',
+    '伊朗': 'Iran',
+    '以色列': 'Israel',
+    '黎巴嫩': 'Lebanon',
+    '伊拉克': 'Iraq',
+    '巴林': 'Bahrain',
+    '科威特': 'Kuwait',
+    '阿富汗': 'Afghanistan',
+    '阿曼': 'Oman',
+    '克罗地亚': 'Croatia',
+    '奥地利': 'Austria',
+    '瑞士': 'Swiztherland',
+    '阿尔及利亚': 'Algeria',
+    '希腊': 'Greece',
+    '巴基斯坦': 'Pakistan',
+    '巴西': 'Brazil',
+    '格鲁吉亚': 'Georgia',
+    '罗马尼亚': 'Romania',
+    '丹麦': 'Denmark',
+    '挪威': 'Norway',
+    # '北马其顿':
+    '荷兰': 'Netherlands',
+    '北爱尔兰': 'Ireland',
+    '中国': 'China',
+    '俄罗斯': 'Russia',
+    '尼泊尔': 'Nepal',
+    '日本': 'Japan',
+    '加拿大': 'Canada',
+    '印度': 'India',
+    '德国': 'Germany',
+    '意大利': 'Italy',
+    '斯里兰卡': 'Sri Lanka',
+    '新加坡': 'Singapore',
+    '柬埔寨': 'Cambodia',
+    '比利时': 'Belgium',
+    '法国': 'France',
+    '泰国': 'Thailand',
+    '澳大利亚': 'Australia',
+    '瑞典': 'Sweden',
+    '美国': 'United States',
+    '芬兰': 'Finland',
+    '英国': 'United Kingdom'
+}
+
 
 def searchCityLongName(cityName):
     """
@@ -177,6 +232,75 @@ def display_recent_overall_distribution(pic_file, maxCount=500, **kwargs):
             **kwargs)
 
 
+def display_recent_global_distribution(pic_file, maxCount=200, **kwargs):
+    """
+    display the distribution of recent total numbers of confirmed patients.
+
+    Parameters
+    ----------
+    pic_file: str
+        absolute path of the generated figure.
+    maxCount: int
+        maximumn count of colorbar. (default: 200)
+    """
+
+    conn = db.connect(dbFile)
+    cu = conn.cursor()
+
+    OverallDf = pd.read_sql_query(
+        """select * from Region_Data""", conn)
+    OverallDf['updateTime'] = OverallDf['updateTime'].astype('int64')
+
+    recentData = OverallDf.groupby('provinceShortName').apply(
+        lambda t: t[t['updateTime'] == t['updateTime'].max()])
+
+    recentData = recentData.groupby('country').agg(
+        {
+            'confirmedCount': 'sum',
+            'suspectedCount': 'sum',
+            'updateTime': 'mean'
+        })
+    recentData['date'] = pd.to_datetime(
+        recentData['updateTime']/1000, unit='s')
+
+    time = recentData[recentData.index == '中国']['updateTime']
+    data = [
+        [
+            COUNTRY_DICT[recentData.index[i]],
+            int(recentData['confirmedCount'][i])
+        ]
+        for i in range(recentData.shape[0])
+        if recentData.index[i] in COUNTRY_DICT.keys()]
+
+    map_3 = Map()
+    map_3.add(
+        "{0} worldwide COVID-19 patients distribution".format(
+            recentData['date'][1].strftime('%Y-%m-%d')),
+        data,
+        maptype='world', is_map_symbol_show=False)
+    map_3.set_series_opts(
+        label_opts=opts.LabelOpts(
+            is_show=False,
+            font_size=100))
+    map_3.set_global_opts(
+        visualmap_opts=opts.VisualMapOpts(max_=maxCount),
+        title_opts=opts.TitleOpts(title=""))
+
+    if 'notebook' in kwargs.keys():
+        if kwargs['notebook']:
+            map_3.render_notebook()
+    else:
+        html_file = '{0}.html'.format(os.path.splitext(pic_file)[0])
+        tmpHtmlFile = map_3.render()
+        shutil.move(tmpHtmlFile, html_file)
+        make_snapshot(
+            snapshot,
+            file_name=html_file,
+            output_name=pic_file,
+            is_remove_html=False,
+            **kwargs)
+
+
 def display_recent_provincial_distribution(province, pic_file, maxCount=500,
                                            **kwargs):
     """
@@ -254,10 +378,13 @@ def main():
     pic_file_1 = os.path.join(projectDir, 'img', 'lineplot_overall.png')
     pic_file_2 = os.path.join(projectDir, 'img', 'overall_distribution.png')
     pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
+    pic_file_4 = os.path.join(projectDir, 'img', 'global_distribution.png')
 
-    display_recent_overall(pic_file_1)
-    display_recent_overall_distribution(pic_file_2, pixel_ratio=1)
-    display_recent_provincial_distribution(province, pic_file_3, pixel_ratio=1)
+    # display_recent_overall(pic_file_1)
+    # display_recent_overall_distribution(pic_file_2, pixel_ratio=1)
+    # display_recent_provincial_distribution(
+    # province, pic_file_3, pixel_ratio=1)
+    display_recent_global_distribution(pic_file_4, pixel_ratio=1)
 
 
 if __name__ == "__main__":
