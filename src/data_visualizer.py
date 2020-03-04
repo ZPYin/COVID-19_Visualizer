@@ -25,60 +25,40 @@ projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 dbFile = os.path.join(projectDir, 'db', '2019_nCov_data.db')
 
+
 # from Chinese to English to support pyecharts
-COUNTRY_DICT = {
-    '尼日利亚': 'Nigeria',
-    '新西兰': 'New Zealand',
-    '立陶宛': 'Lithuania',
-    '菲律宾': 'Philippines',
-    '西班牙': 'Spain',
-    '越南': 'Vietnan',
-    '阿联酋': 'United Arab Emirates',
-    '韩国': 'Korea',
-    '马来西亚': 'Malaysia',
-    '埃及': 'Egypt',
-    '伊朗': 'Iran',
-    '以色列': 'Israel',
-    '黎巴嫩': 'Lebanon',
-    '伊拉克': 'Iraq',
-    '巴林': 'Bahrain',
-    '科威特': 'Kuwait',
-    '阿富汗': 'Afghanistan',
-    '阿曼': 'Oman',
-    '克罗地亚': 'Croatia',
-    '奥地利': 'Austria',
-    '瑞士': 'Swiztherland',
-    '阿尔及利亚': 'Algeria',
-    '希腊': 'Greece',
-    '巴基斯坦': 'Pakistan',
-    '巴西': 'Brazil',
-    '格鲁吉亚': 'Georgia',
-    '罗马尼亚': 'Romania',
-    '丹麦': 'Denmark',
-    '挪威': 'Norway',
-    # '北马其顿':
-    '荷兰': 'Netherlands',
-    '北爱尔兰': 'Ireland',
-    '中国': 'China',
-    '俄罗斯': 'Russia',
-    '尼泊尔': 'Nepal',
-    '日本': 'Japan',
-    '加拿大': 'Canada',
-    '印度': 'India',
-    '德国': 'Germany',
-    '意大利': 'Italy',
-    '斯里兰卡': 'Sri Lanka',
-    '新加坡': 'Singapore',
-    '柬埔寨': 'Cambodia',
-    '比利时': 'Belgium',
-    '法国': 'France',
-    '泰国': 'Thailand',
-    '澳大利亚': 'Australia',
-    '瑞典': 'Sweden',
-    '美国': 'United States',
-    '芬兰': 'Finland',
-    '英国': 'United Kingdom'
-}
+def searchCountryENName(countryCNName):
+    """
+    search the country English name.
+
+    Parameters
+    ----------
+    countryCNName: str
+        country Chinese name. e.g., '中国' (China)
+
+    examples
+    --------
+    >>> searchCountryENName('中国')
+    >>> 'China'
+    """
+
+    countryENName = 'unknown'
+
+    # search in the additional city name table
+    mapping_file = os.path.join(
+        projectDir, 'include', 'country_English_name_table.txt')
+    country_name_dict = dict()
+    with open(mapping_file, 'r', encoding='utf-8') as fh:
+        tableReader = csv.reader(fh)
+        tableReader.__next__()
+        for row in tableReader:
+            country_name_dict[row[1]] = row[0]
+
+    for countryCN in country_name_dict.keys():
+        if re.search('{0}'.format(countryCNName), countryCN):
+            countryENName = country_name_dict[countryCN]
+
+    return countryENName
 
 
 def searchCityLongName(cityName):
@@ -92,8 +72,8 @@ def searchCityLongName(cityName):
 
     examples
     --------
-    > searchCityLongName('鄂州')
-    > '鄂州市'
+    >>> searchCityLongName('鄂州')
+    >>> '鄂州市'
     """
 
     cityLongName = None
@@ -266,7 +246,7 @@ def display_recent_global_distribution(pic_file, maxCount=200, **kwargs):
     time = recentData[recentData.index == '中国']['updateTime']
     data = [
         [
-            COUNTRY_DICT[recentData.index[i]],
+            searchCountryENName(recentData.index[i]),
             int(recentData['confirmedCount'][i])
         ]
         for i in range(recentData.shape[0])
