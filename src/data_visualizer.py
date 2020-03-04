@@ -131,7 +131,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall['suspectedCount'],
         color='k', marker='o')
     ax1.set_ylabel('confirmed/suspected number')
-    ax1.set_ylim([0, 80000])
+    ax1.set_ylim([0, 85000])
     ax2 = ax1.twinx()
     s3, = ax2.plot(
         dailyMeanOverall.index,
@@ -142,7 +142,7 @@ def display_recent_overall(pic_file):
         dailyMeanOverall['deadCount'],
         color='b', marker='o')
     ax2.set_ylabel('cured/dead number')
-    ax2.set_ylim([0, 40000])
+    ax2.set_ylim([0, 60000])
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=2))
     plt.xlim(
@@ -249,8 +249,7 @@ def display_recent_global_distribution(pic_file, maxCount=200, **kwargs):
             searchCountryENName(recentData.index[i]),
             int(recentData['confirmedCount'][i])
         ]
-        for i in range(recentData.shape[0])
-        if recentData.index[i] in COUNTRY_DICT.keys()]
+        for i in range(recentData.shape[0])]
 
     map_3 = Map()
     map_3.add(
