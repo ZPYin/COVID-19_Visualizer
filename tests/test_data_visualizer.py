@@ -5,7 +5,7 @@ import unittest
 projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(projectDir, 'src'))
 
-from data_visualizer import searchCityLongName, searchCountryENName
+from data_visualizer import *
 
 
 class Test(unittest.TestCase):
@@ -41,6 +41,15 @@ class Test(unittest.TestCase):
 
         for CN_name, EN_name in zip(CN_names, EN_names):
             self.assertEqual(searchCountryENName(CN_name), EN_name)
+
+    def test_searchCountryCNName(self):
+        print('---> Test on searchCountryCNName')
+
+        CN_names = ['中国', '美国']
+        EN_names = ['China', 'United States of America']
+
+        for EN_name, CN_name in zip(EN_names, CN_names):
+            self.assertEqual(searchCountryCNName(EN_name), CN_name)
 
 
 def main():

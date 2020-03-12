@@ -9,6 +9,7 @@ import matplotlib.dates as mdates
 from matplotlib import font_manager
 import pandas as pd
 import datetime as dt
+import numpy as np
 
 import sqlite3 as db
 
@@ -26,7 +27,6 @@ projectDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dbFile = os.path.join(projectDir, 'db', '2019_nCov_data.db')
 
 
-# from Chinese to English to support pyecharts
 def searchCountryENName(countryCNName):
     """
     search the country English name.
@@ -59,6 +59,40 @@ def searchCountryENName(countryCNName):
             countryENName = country_name_dict[countryCN]
 
     return countryENName
+
+
+def searchCountryCNName(countryENName):
+    """
+    search the country Chinese name.
+
+    Parameters
+    ----------
+    countryENName: str
+        country English name. e.g., 'China' (中国)
+
+    examples
+    --------
+    >>> searchCountryENName('China')
+    >>> '中国'
+    """
+
+    countryCNName = 'unknown'
+
+    # search in the additional city name table
+    mapping_file = os.path.join(
+        projectDir, 'include', 'country_English_name_table.txt')
+    country_name_dict = dict()
+    with open(mapping_file, 'r', encoding='utf-8') as fh:
+        tableReader = csv.reader(fh)
+        tableReader.__next__()
+        for row in tableReader:
+            country_name_dict[row[0]] = row[1]
+
+    for countryEN in country_name_dict.keys():
+        if re.search('{0}'.format(countryENName), countryEN):
+            countryCNName = country_name_dict[countryEN]
+
+    return countryCNName
 
 
 def searchCityLongName(cityName):
@@ -111,6 +145,9 @@ def searchCityLongName(cityName):
 
 
 def display_recent_overall(pic_file):
+    """
+    Visualize the time series of COVID-19 statistics in China.
+    """
 
     conn = db.connect(dbFile)
 
@@ -148,6 +185,59 @@ def display_recent_overall(pic_file):
     plt.xlim(
         [dt.datetime(2020, 1, 23),
          max(dailyMeanOverall.index) + dt.timedelta(days=1)])
+    plt.title('Time series of COVID-19 pandemic in China')
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=50)
+    plt.legend(
+        (s1, s2, s3, s4),
+        ('confirmed', 'suspected', 'cured', 'dead'))
+    plt.savefig(pic_file)
+
+
+def display_timeseries(pic_file, country):
+    """
+    Visualize the time series of COVID-19 statistics for the given country.
+    """
+
+    conn = db.connect(dbFile)
+
+    RegionDf = pd.read_sql_query(
+        """select * from Region_Data WHERE country='{0}'""".format(country),
+        conn)
+    RegionDf['updateTime'] = RegionDf['updateTime'].astype('int64')
+    RegionDf['date'] = pd.to_datetime(
+        RegionDf['updateTime'] / 1000, unit='s')
+    RegionDf = RegionDf.set_index('date')
+    dailyMeanRegion = RegionDf.resample('D').mean().round()
+    fig, ax1 = plt.subplots(figsize=(8, 5))
+
+    s1, = ax1.plot(
+        dailyMeanRegion.index,
+        dailyMeanRegion['confirmedCount'],
+        color='r', marker='o')
+    s2, = ax1.plot(
+        dailyMeanRegion.index,
+        dailyMeanRegion['suspectedCount'],
+        color='k', marker='o')
+    ax1.set_ylabel('confirmed/suspected number')
+    ax1.set_ylim([0, np.max(dailyMeanRegion['confirmedCount']) * 1.3])
+    ax2 = ax1.twinx()
+    s3, = ax2.plot(
+        dailyMeanRegion.index,
+        dailyMeanRegion['curedCount'],
+        color='g', marker='o')
+    s4, = ax2.plot(
+        dailyMeanRegion.index,
+        dailyMeanRegion['deadCount'],
+        color='b', marker='o')
+    ax2.set_ylabel('cured/dead number')
+    ax2.set_ylim([0, np.max(dailyMeanRegion['curedCount']) * 1.3])
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=2))
+    plt.xlim(
+        [dt.datetime(2020, 2, 20),
+            max(dailyMeanRegion.index) + dt.timedelta(days=1)])
+    plt.title('Time series of the COVID-19 pandemic in {0}'.format(
+        searchCountryENName(country)))
     plt.setp(ax1.xaxis.get_majorticklabels(), rotation=50)
     plt.legend(
         (s1, s2, s3, s4),
@@ -358,12 +448,14 @@ def main():
     pic_file_2 = os.path.join(projectDir, 'img', 'overall_distribution.png')
     pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
     pic_file_4 = os.path.join(projectDir, 'img', 'global_distribution.png')
+    pic_file_5 = os.path.join(projectDir, 'img', 'lineplot_Italy.png')
 
     # display_recent_overall(pic_file_1)
     # display_recent_overall_distribution(pic_file_2, pixel_ratio=1)
     # display_recent_provincial_distribution(
     # province, pic_file_3, pixel_ratio=1)
-    display_recent_global_distribution(pic_file_4, pixel_ratio=1)
+    # display_recent_global_distribution(pic_file_4, pixel_ratio=1)
+    display_timeseries(pic_file_5, searchCountryCNName('Italy'))
 
 
 if __name__ == "__main__":

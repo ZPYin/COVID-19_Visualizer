@@ -13,6 +13,7 @@ pic_file_1 = os.path.join(projectDir, 'img', 'lineplot_overall.png')
 pic_file_2 = os.path.join(projectDir, 'img', 'overall_distribution.png')
 pic_file_3 = os.path.join(projectDir, 'img', 'hubei_distribution.png')
 pic_file_4 = os.path.join(projectDir, 'img', 'global_distribution.png')
+pic_file_5 = os.path.join(projectDir, 'img', 'lineplot_Italy.png')
 
 try:
     download_all_regionNames(pause=5)
@@ -26,6 +27,7 @@ except Exception as e:
     logger.error(e)
 logger.info('Display line-plot of overall data.')
 display_recent_overall(pic_file_1)
+display_timeseries(pic_file_5, searchCountryCNName('Italy'))
 time.sleep(5)
 
 download_all_regional_data(pause=5)
