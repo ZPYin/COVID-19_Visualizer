@@ -12,7 +12,7 @@ PROJECTDIR = os.path.dirname(
 DBFILE = os.path.join(PROJECTDIR, 'db', '2019_nCov_data.db')
 
 
-def download_overall_data(maxNReq=3, pause=3):
+def download_overall_data(maxNReq=2, pause=3):
     """
     download the statistics for China.
 
@@ -76,7 +76,7 @@ def download_overall_data(maxNReq=3, pause=3):
     return OverallData
 
 
-def download_all_regionNames(maxNReq=3, pause=3):
+def download_all_regionNames(maxNReq=2, pause=3):
     """
     download the list of the supported area.
 
@@ -157,7 +157,7 @@ def download_all_regional_data(pause=3):
     db.db_close()
 
 
-def download_regional_data(province='湖北省', maxNReq=3, pause=3):
+def download_regional_data(province='湖北省', maxNReq=2, pause=3):
     """
     download the statistics for a give province/area.
 

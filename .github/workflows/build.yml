@@ -80,7 +80,7 @@ jobs:
         git commit -m "Update figures by GitHub Actions" -a
   
     - name: GitHub Push
-      uses: ad-m/github-push-action@v0.5.0
+      uses: ad-m/github-push-action@master
       with:
         # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
