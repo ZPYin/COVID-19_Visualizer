@@ -1,6 +1,8 @@
 # 2019-nCov Visualizer
 ![Update COVID-19](https://github.com/ZPYin/COVID-19_Visualizer/workflows/Update%20COVID-19/badge.svg?branch=master)
 
+> This project is out of date, due to the close of data [API](https://github.com/BlankerL/DXY-COVID-19-Crawler) with the thinking to avoid high network traffic. The data are still available through the [data archive](https://github.com/BlankerL/DXY-COVID-19-Crawler), but at the moment I don't have the willing to update the code. So let it be!
+
 Novel Coronavirus 2019 ([2019-nCov][1]) has been spread crazily in China even over the world since the end of 2019. Thousands of people were infected in less than one month. In order to closely monitor the outbreak and developing phase of this disease, this repo was created to give you some quicklooks of how it looks like in China NOW.
 
 The raw data was collected by Chinese government and distributed by some well-known public platforms in China (e.g., [DingXiangYuan][2](丁香园)). The dataset used in the analysis was accessed through the [API][3] provided by [BlanKerL][5] (BIG thanks).
